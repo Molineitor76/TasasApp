@@ -151,7 +151,6 @@ function calcular(){
     const tasaOrigen = tasas[origen];
     const tasaDestino = tasas[destino];
 
-    // Convertimos primero a USD y luego a la moneda destino
     const resultado = (monto * tasaDestino) / tasaOrigen;
 
     document.getElementById("resultado").innerHTML = `
@@ -160,34 +159,11 @@ function calcular(){
             <p>${monto} ${origen} = ${resultado.toFixed(2)} ${destino}</p>
         </div>
     `;
-
-}
-
-    let vnz = tasas.VNZ;
-    let cuba = tasas.CUBA;
-    let clasica = tasas.CLASICA;
-    let efectivo = tasas.EFECTIVO;
-
-    document.getElementById("resultado").innerHTML = `
-
-    <div class="linea"><b>USD:</b> ${monto}</div>
-
-    <div class="linea"><b>CUP:</b> ${(monto*cuba).toFixed(2)}</div>
-
-    <div class="linea"><b>BVs:</b> ${(monto*vnz).toFixed(2)}</div>
-
-    <div class="linea"><b>Clásica:</b> ${(monto*clasica).toFixed(2)}</div>
-
-    <div class="linea"><b>Efectivo:</b> ${(monto*efectivo).toFixed(2)}</div>
-
-    `;
-
 }
 
 cargarTasas();
 
 </script>
-
   
 </body>
 </html>
