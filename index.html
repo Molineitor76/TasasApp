@@ -145,6 +145,24 @@ function calcular(){
         return;
     }
 
+    const origen = document.getElementById("desde").value;
+    const destino = document.getElementById("hacia").value;
+
+    const tasaOrigen = tasas[origen];
+    const tasaDestino = tasas[destino];
+
+    // Convertimos primero a USD y luego a la moneda destino
+    const resultado = (monto * tasaDestino) / tasaOrigen;
+
+    document.getElementById("resultado").innerHTML = `
+        <div class="linea">
+            <h2>${resultado.toFixed(2)}</h2>
+            <p>${monto} ${origen} = ${resultado.toFixed(2)} ${destino}</p>
+        </div>
+    `;
+
+}
+
     let vnz = tasas.VNZ;
     let cuba = tasas.CUBA;
     let clasica = tasas.CLASICA;
