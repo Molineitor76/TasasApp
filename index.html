@@ -360,6 +360,22 @@ const monedaDestino = monedas[destino];
 const montoFormateado = monto.toLocaleString("es-VE", {minimumFractionDigits:2});
 const resultadoFormateado = resultado.toLocaleString("es-VE", {minimumFractionDigits:2});
 
+    window.ultimaConversion = {
+
+    monto: montoFormateado,
+
+    resultado: resultadoFormateado,
+
+    origen: monedaOrigen.simbolo,
+
+    destino: monedaDestino.simbolo,
+
+    origenIcono: monedaOrigen.icono,
+
+    destinoIcono: monedaDestino.icono
+
+};
+
     document.getElementById("resultado").innerHTML = `
     <div class="linea" style="text-align:center;padding:15px;border-radius:10px;background:#f8f9fa;margin-top:15px;">
 
