@@ -188,28 +188,6 @@ cargarTasas();
 
 </script>
 
-  const API_URL = "https://script.google.com/macros/s/AKfycbwzp-bp3UYlhGJR4XwJ0App_zfmYrEuP_gafnisgDgurGWzfTekK6YulzMJpLpLrIm1KQ/exec";
-
-let tasas = {};
-
-async function cargarTasas(){
-
-    const respuesta = await fetch(API_URL);
-
-    const datos = await respuesta.json();
-
-    datos.forEach(item=>{
-        tasas[item.Concepto]=Number(item.Valor);
-    });
-
-    document.getElementById("vnz").innerText=tasas.VNZ;
-    document.getElementById("cuba").innerText=tasas.CUBA;
-    document.getElementById("clasica").innerText=tasas.CLASICA;
-    document.getElementById("efectivo").innerText=tasas.EFECTIVO;
-
-}
-
-cargarTasas();
   
 </body>
 </html>
