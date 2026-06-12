@@ -257,9 +257,16 @@ background:#1976D2;
 Convertir
 </button>
 
-<div class="resultado" id="resultado">
+<div class="resultado" id="resultado"></div>
 
-</div>
+<button
+id="btnCompartir"
+onclick="compartir()"
+style="display:none;margin-top:15px;background:#25D366;">
+
+📤 Compartir
+
+</button>
 
 </div>
 
@@ -370,6 +377,7 @@ const resultadoFormateado = resultado.toLocaleString("es-VE", {minimumFractionDi
 
     </div>
 `;
+    document.getElementById("btnCompartir").style.display = "block";
 }
 
     function intercambiar(){
@@ -384,6 +392,43 @@ const resultadoFormateado = resultado.toLocaleString("es-VE", {minimumFractionDi
     hacia.value = temp;
 
 }
+
+    function compartir(){
+
+    if(!window.ultimaConversion){
+        alert("Primero realiza una conversión.");
+        return;
+    }
+
+    const texto = `
+💱 Cambio Express
+
+${window.ultimaConversion.origenIcono} ${window.ultimaConversion.monto} ${window.ultimaConversion.origen}
+
+⬇️
+
+${window.ultimaConversion.destinoIcono} ${window.ultimaConversion.resultado} ${window.ultimaConversion.destino}
+
+Conversión realizada con Cambio Express
+`;
+
+    if(navigator.share){
+
+        navigator.share({
+            title:"Cambio Express",
+            text:texto
+        });
+
+    }else{
+
+        navigator.clipboard.writeText(texto);
+
+        alert("La conversión fue copiada al portapapeles.");
+
+    }
+
+}
+    
 cargarTasas();
 
 </script>
