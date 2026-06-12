@@ -84,46 +84,57 @@ Calcular
 
 <script>
 
+const API_URL = "https://script.google.com/macros/s/AKfycbwzp-bp3UYlhGJR4XwJ0App_zfmYrEuP_gafnisgDgurGWzfTekK6YulzMJpLpLrIm1KQ/exec";
+
+let tasas = {};
+
+async function cargarTasas(){
+
+    const respuesta = await fetch(API_URL);
+    const datos = await respuesta.json();
+
+    datos.forEach(item=>{
+        tasas[item.Concepto]=Number(item.Valor);
+    });
+
+    document.getElementById("vnz").innerText = tasas.VNZ;
+    document.getElementById("cuba").innerText = tasas.CUBA;
+    document.getElementById("clasica").innerText = tasas.CLASICA;
+    document.getElementById("efectivo").innerText = tasas.EFECTIVO;
+
+}
+
 function calcular(){
 
-let monto =
-parseFloat(
-document.getElementById("monto").value
-);
+    let monto = parseFloat(document.getElementById("monto").value);
 
-if(isNaN(monto)){
-alert("Ingrese un monto");
-return;
-}
+    if(isNaN(monto)){
+        alert("Ingrese un monto");
+        return;
+    }
 
-let vnz = tasas.VNZ;
-let cuba = tasas.CUBA;
-let clasica = tasas.CLASICA;
-let efectivo = tasas.EFECTIVO;
+    let vnz = tasas.VNZ;
+    let cuba = tasas.CUBA;
+    let clasica = tasas.CLASICA;
+    let efectivo = tasas.EFECTIVO;
 
-document.getElementById("resultado").innerHTML =
+    document.getElementById("resultado").innerHTML = `
 
-`
-<div class="linea"><b>USD:</b> ${monto}</div>
+    <div class="linea"><b>USD:</b> ${monto}</div>
 
-<div class="linea"><b>CUP:</b>
-${(monto*cuba).toFixed(2)}
-</div>
+    <div class="linea"><b>CUP:</b> ${(monto*cuba).toFixed(2)}</div>
 
-<div class="linea"><b>BVs:</b>
-${(monto*vnz).toFixed(2)}
-</div>
+    <div class="linea"><b>BVs:</b> ${(monto*vnz).toFixed(2)}</div>
 
-<div class="linea"><b>Clásica:</b>
-${(monto*clasica).toFixed(2)}
-</div>
+    <div class="linea"><b>Clásica:</b> ${(monto*clasica).toFixed(2)}</div>
 
-<div class="linea"><b>Efectivo:</b>
-${(monto*efectivo).toFixed(2)}
-</div>
-`;
+    <div class="linea"><b>Efectivo:</b> ${(monto*efectivo).toFixed(2)}</div>
+
+    `;
 
 }
+
+cargarTasas();
 
 </script>
 
