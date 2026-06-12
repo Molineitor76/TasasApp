@@ -225,8 +225,28 @@ placeholder="Ingrese monto">
 
 <label><b>Desde:</b></label>
 
-<select id="desde" style="width:100%;padding:10px;margin-top:5px;margin-bottom:15px;font-size:18px;">
+<select id="desde" style="width:100%;padding:10px;margin-top:5px;margin-bottom:10px;font-size:18px;">
 </select>
+
+<div style="text-align:center;margin:10px 0;">
+
+<button
+type="button"
+onclick="intercambiar()"
+style="
+width:55px;
+height:55px;
+border-radius:50%;
+font-size:24px;
+padding:0;
+background:#1976D2;
+">
+
+🔄
+
+</button>
+
+</div>
 
 <label><b>Hacia:</b></label>
 
@@ -352,6 +372,18 @@ const resultadoFormateado = resultado.toLocaleString("es-VE", {minimumFractionDi
 `;
 }
 
+    function intercambiar(){
+
+    const desde = document.getElementById("desde");
+    const hacia = document.getElementById("hacia");
+
+    const temp = desde.value;
+
+    desde.value = hacia.value;
+
+    hacia.value = temp;
+
+}
 cargarTasas();
 
 </script>
