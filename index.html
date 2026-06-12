@@ -72,8 +72,18 @@ type="number"
 id="monto"
 placeholder="Ingrese monto">
 
+<label><b>Desde:</b></label>
+
+<select id="desde" style="width:100%;padding:10px;margin-top:5px;margin-bottom:15px;font-size:18px;">
+</select>
+
+<label><b>Hacia:</b></label>
+
+<select id="hacia" style="width:100%;padding:10px;margin-top:5px;margin-bottom:15px;font-size:18px;">
+</select>
+
 <button onclick="calcular()">
-Calcular
+Convertir
 </button>
 
 <div class="resultado" id="resultado">
@@ -101,6 +111,28 @@ async function cargarTasas(){
     document.getElementById("cuba").innerText = tasas.CUBA;
     document.getElementById("clasica").innerText = tasas.CLASICA;
     document.getElementById("efectivo").innerText = tasas.EFECTIVO;
+
+    const desde = document.getElementById("desde");
+const hacia = document.getElementById("hacia");
+
+desde.innerHTML = "";
+hacia.innerHTML = "";
+
+datos.forEach(item => {
+
+    const opcion1 = document.createElement("option");
+    opcion1.value = item.Concepto;
+    opcion1.text = item.Nombre;
+
+    const opcion2 = opcion1.cloneNode(true);
+
+    desde.appendChild(opcion1);
+    hacia.appendChild(opcion2);
+
+});
+
+desde.value = "USD";
+hacia.value = "VNZ";
 
 }
 
