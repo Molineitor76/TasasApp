@@ -256,7 +256,20 @@ background:#1976D2;
 <button onclick="calcular()">
 Convertir
 </button>
+    
+<button
+onclick="contactarWhatsapp()"
+style="
+margin-top:10px;
+background:#25D366;
+color:white;
+font-weight:bold;
+">
 
+💬 Contactar por WhatsApp
+
+</button>
+    
 <div class="resultado" id="resultado"></div>
 
 <button
@@ -409,7 +422,7 @@ const resultadoFormateado = resultado.toLocaleString("es-VE", {minimumFractionDi
 
 }
 
-    function compartir(){
+   function compartir(){
 
     if(!window.ultimaConversion){
         alert("Primero realiza una conversión.");
@@ -417,7 +430,7 @@ const resultadoFormateado = resultado.toLocaleString("es-VE", {minimumFractionDi
     }
 
     const texto = `
-💱 Cambio Express
+💱 *Cambio Express*
 
 ${window.ultimaConversion.origenIcono} ${window.ultimaConversion.monto} ${window.ultimaConversion.origen}
 
@@ -425,7 +438,23 @@ ${window.ultimaConversion.origenIcono} ${window.ultimaConversion.monto} ${window
 
 ${window.ultimaConversion.destinoIcono} ${window.ultimaConversion.resultado} ${window.ultimaConversion.destino}
 
-Conversión realizada con Cambio Express
+━━━━━━━━━━━━━━
+
+💳 *Datos para Pago Móvil*
+
+🏦 Banco de Venezuela
+
+📱 0412-4058064
+
+🆔 E-85000745
+
+━━━━━━━━━━━━━━
+
+💬 Envíanos el comprobante por WhatsApp:
+
+https://wa.me/584124058064
+
+Gracias por preferir Cambio Express.
 `;
 
     if(navigator.share){
@@ -444,7 +473,18 @@ Conversión realizada con Cambio Express
     }
 
 }
-    
+function contactarWhatsapp(){
+
+    const mensaje = encodeURIComponent(
+        "Hola, deseo realizar una operación de cambio."
+    );
+
+    window.open(
+        "https://wa.me/584124058064?text=" + mensaje,
+        "_blank"
+    );
+
+}    
 cargarTasas();
 
 </script>
