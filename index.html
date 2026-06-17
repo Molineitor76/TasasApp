@@ -371,7 +371,7 @@ function calcular(){
 const monedaDestino = monedas[destino];
 
 const montoFormateado = monto.toLocaleString("es-VE", {minimumFractionDigits:2});
-const resultadoFormateado = resultado.toLocaleString("es-VE", {minimumFractionDigits:2});
+const resultadoFormateado = Math.round(resultado).toLocaleString("es-VE");
 
     window.ultimaConversion = {
 
